@@ -1,0 +1,26 @@
+{
+  "name": "ai-web-factory",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@11.9.0",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "check": "astro check",
+    "preview": "astro preview",
+    "deploy:cloudflare": "wrangler pages deploy dist"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "latest",
+    "astro": "latest",
+    "daisyui": "latest",
+    "tailwindcss": "latest"
+  },
+  "devDependencies": {
+    "@astrojs/check": "latest",
+    "typescript": "latest",
+    "wrangler": "latest"
+  }
+}

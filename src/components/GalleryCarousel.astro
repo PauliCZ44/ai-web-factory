@@ -1,0 +1,42 @@
+---
+import type { SiteConfig } from '@/content/site';
+
+interface Props {
+  gallery: SiteConfig['galleryCarousel'];
+}
+
+const { gallery } = Astro.props;
+const slideId = (index: number) => `detail-gallery-${index + 1}`;
+const previousSlide = (index: number) => slideId(index === 0 ? gallery.slides.length - 1 : index - 1);
+const nextSlide = (index: number) => slideId(index === gallery.slides.length - 1 ? 0 : index + 1);
+---
+<section id="gallery-carousel" class="bg-base-100">
+  <div class="section-shell">
+    <div class="reveal grid gap-5 md:grid-cols-[0.76fr_1fr] md:items-end" data-reveal>
+      <div>
+        <p class="section-kicker">{gallery.eyebrow}</p>
+        <h2 class="mt-4 text-4xl font-bold leading-tight sm:text-5xl">{gallery.title}</h2>
+      </div>
+      <p class="max-w-2xl text-lg leading-8 text-base-content/70">{gallery.text}</p>
+    </div>
+
+    <div class="reveal mt-10 border border-base-300 bg-base-200/50 p-3 shadow-xl md:p-5" data-reveal>
+      <div class="carousel w-full">
+        {gallery.slides.map((slide, index) => (
+          <article id={slideId(index)} class="carousel-item relative w-full scroll-mt-24">
+            <img class="h-[27rem] w-full object-cover md:h-[34rem]" src={slide.src} alt={slide.alt} loading={index === 0 ? 'eager' : 'lazy'} />
+            <div class="absolute inset-x-4 bottom-4 border border-base-100/45 bg-base-100/90 p-5 shadow-xl backdrop-blur md:inset-x-auto md:left-6 md:max-w-md">
+              <span class="text-xs font-black uppercase tracking-[0.18em] text-primary">{slide.meta}</span>
+              <h3 class="mt-2 text-2xl font-bold md:text-3xl">{slide.title}</h3>
+              <p class="mt-3 leading-7 text-base-content/72">{slide.text}</p>
+            </div>
+            <div class="absolute left-4 right-4 top-1/2 flex -translate-y-1/2 justify-between">
+              <a class="btn btn-circle bg-base-100/90" href={`#${previousSlide(index)}`} aria-label="Předchozí slide">&lsaquo;</a>
+              <a class="btn btn-circle bg-base-100/90" href={`#${nextSlide(index)}`} aria-label="Další slide">&rsaquo;</a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

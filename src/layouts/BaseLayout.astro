@@ -1,0 +1,26 @@
+---
+import '../styles/global.css';
+import type { SiteConfig } from '@/content/site';
+
+interface Props {
+  site: SiteConfig;
+}
+
+const { site } = Astro.props;
+---
+<!doctype html>
+<html lang={site.language} data-theme={site.theme}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={site.seo.description} />
+    <meta name="generator" content={Astro.generator} />
+    <title>{site.seo.title}</title>
+  </head>
+  <body class="bg-base-100 text-base-content antialiased">
+    <slot />
+    <script is:inline>
+      document.documentElement.classList.add('js');
+    </script>
+  </body>
+</html>

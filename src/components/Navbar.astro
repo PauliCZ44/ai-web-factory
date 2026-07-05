@@ -1,0 +1,34 @@
+---
+import type { SiteConfig } from '@/content/site';
+
+interface Props {
+  site: SiteConfig;
+}
+
+const { site } = Astro.props;
+const isSticky = site.features.includes('stickyNav');
+---
+<header
+  class:list={[
+    'z-40 w-full border-b border-base-300/70 bg-base-100/88 backdrop-blur transition-shadow duration-300 data-[scrolled=true]:shadow-md',
+    isSticky && 'sticky top-0'
+  ]}
+  data-sticky-nav={isSticky ? '' : undefined}
+>
+  <div class="navbar mx-auto max-w-6xl px-5 sm:px-8">
+    <div class="navbar-start">
+      <a href="#top" class="text-lg font-bold tracking-normal text-base-content">{site.company}</a>
+    </div>
+    <nav class="navbar-center hidden lg:flex" aria-label="Primary navigation">
+      <ul class="menu menu-horizontal gap-1 px-1 font-semibold">
+        {site.sections.includes('services') && <li><a href="#services">Proces</a></li>}
+        {site.sections.includes('testimonials') && <li><a href="#testimonials">Reference</a></li>}
+        {site.sections.includes('gallery') && <li><a href="#gallery">Ukázky</a></li>}
+        {site.sections.includes('contact') && <li><a href="#contact">Kontakt</a></li>}
+      </ul>
+    </nav>
+    <div class="navbar-end gap-2">
+      <a class="btn btn-primary btn-sm" href={`mailto:${site.email}`}>{site.navigation.actionLabel}</a>
+    </div>
+  </div>
+</header>

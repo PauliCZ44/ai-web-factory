@@ -1,0 +1,48 @@
+---
+import type { SiteConfig } from '@/content/site';
+
+interface Props {
+  site: SiteConfig;
+}
+
+const { site } = Astro.props;
+---
+<section id="top" class="factory-grid overflow-hidden bg-base-200/60">
+  <div class="section-shell grid items-center gap-10 lg:min-h-[calc(100vh-76px)] lg:grid-cols-[0.9fr_1.1fr]">
+    <div class="reveal max-w-2xl" data-reveal>
+      <p class="section-kicker">{site.hero.eyebrow}</p>
+      <h1 class="mt-5 text-5xl font-bold leading-[0.98] text-base-content sm:text-6xl lg:text-7xl">
+        {site.hero.title}
+      </h1>
+      <p class="mt-6 max-w-xl text-lg leading-8 text-base-content/75 sm:text-xl">
+        {site.hero.text}
+      </p>
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+        <a class="btn btn-primary" href={`mailto:${site.email}`}>{site.hero.primaryAction}</a>
+        <a class="btn btn-outline" href="#services">{site.hero.secondaryAction}</a>
+      </div>
+      <div class="signature-ticket mt-10 max-w-xl">
+        <span>AWF / výrobní linka</span>
+        <strong>{site.hero.signature}</strong>
+      </div>
+    </div>
+
+    <div class="reveal relative min-h-[400px] lg:min-h-[640px]" data-reveal>
+      <div class="absolute -right-8 top-0 hidden h-28 w-28 border-t-8 border-r-8 border-primary lg:block"></div>
+      <div class="absolute inset-x-4 bottom-0 top-8 rotate-1 rounded-sm bg-primary/15"></div>
+      <img
+        class="absolute inset-0 h-full w-full -rotate-1 rounded-sm object-cover shadow-2xl lg:translate-x-6"
+        src={site.hero.image.src}
+        alt={site.hero.image.alt}
+        loading="eager"
+      />
+      <div class="absolute left-0 top-10 grid h-24 w-24 place-items-center bg-base-100 text-center shadow-xl lg:-left-8">
+        <span class="text-xs font-black uppercase leading-tight tracking-[0.18em] text-primary">Config<br />first</span>
+      </div>
+      <div class="absolute bottom-5 left-5 right-5 border border-base-100/45 bg-base-100/90 p-5 shadow-xl backdrop-blur">
+        <p class="text-sm font-bold uppercase tracking-[0.16em] text-primary">{site.tagline}</p>
+        <p class="mt-2 text-base text-base-content/75">{site.description}</p>
+      </div>
+    </div>
+  </div>
+</section>

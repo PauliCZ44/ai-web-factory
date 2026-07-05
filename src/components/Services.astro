@@ -1,0 +1,31 @@
+---
+import type { SiteConfig } from '@/content/site';
+
+interface Props {
+  services: SiteConfig['services'];
+}
+
+const { services } = Astro.props;
+---
+<section id="services" class="bg-base-100">
+  <div class="section-shell">
+    <div class="reveal grid gap-5 md:grid-cols-[0.72fr_1fr] md:items-end" data-reveal>
+      <div>
+        <p class="section-kicker">{services.eyebrow}</p>
+        <h2 class="mt-4 text-4xl font-bold leading-tight sm:text-5xl">{services.title}</h2>
+      </div>
+      <p class="border-l-4 border-primary pl-5 text-lg leading-8 text-base-content/70">
+        Náš styl stojí na kontrastu: lidský tón a lokální důvěra vpředu, čistý opakovatelný systém vzadu.
+      </p>
+    </div>
+    <div class="mt-10 grid gap-4 md:grid-cols-3">
+      {services.items.map((service, index) => (
+        <article class="reveal process-card border border-base-300 bg-base-100 p-6 shadow-sm" data-reveal style={`transition-delay:${index * 90}ms`}>
+          <span class="text-5xl font-black leading-none text-primary/25">{String(index + 1).padStart(2, '0')}</span>
+          <h3 class="mt-6 text-2xl font-bold">{service.title}</h3>
+          <p class="mt-3 leading-7 text-base-content/72">{service.text}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

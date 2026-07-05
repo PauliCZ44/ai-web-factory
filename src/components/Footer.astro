@@ -1,0 +1,22 @@
+---
+import type { SiteConfig } from '@/content/site';
+
+interface Props {
+  site: SiteConfig;
+}
+
+const { site } = Astro.props;
+---
+<footer class="border-t border-base-300 bg-base-200/60">
+  <div class="mx-auto grid max-w-6xl gap-8 px-5 py-10 sm:px-8 md:grid-cols-[1fr_auto] md:items-center">
+    <div>
+      <p class="text-lg font-bold">{site.company}</p>
+      <p class="mt-1 text-base-content/68">{site.tagline}</p>
+    </div>
+    <div class="flex flex-wrap gap-2">
+      {site.social.facebook && <a class="btn btn-ghost btn-sm" href={site.social.facebook}>Facebook</a>}
+      {site.social.instagram && <a class="btn btn-ghost btn-sm" href={site.social.instagram}>Instagram</a>}
+      {site.social.linkedin && <a class="btn btn-ghost btn-sm" href={site.social.linkedin}>LinkedIn</a>}
+    </div>
+  </div>
+</footer>
