@@ -6,11 +6,13 @@
   "packageManager": "pnpm@11.9.0",
   "scripts": {
     "dev": "astro dev",
+    "dev:4444": "astro dev --port 4444",
     "start": "astro dev",
     "build": "astro build",
     "check": "astro check",
     "preview": "astro preview",
-    "deploy:cloudflare": "wrangler pages deploy dist"
+    "deploy:cloudflare": "wrangler pages deploy dist",
+    "favicon": "node scripts/generate-favicon.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "latest",
@@ -20,6 +22,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "latest",
+    "sharp": "latest",
     "typescript": "latest",
     "wrangler": "latest"
   }

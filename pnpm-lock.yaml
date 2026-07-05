@@ -24,6 +24,9 @@ importers:
       '@astrojs/check':
         specifier: latest
         version: 0.9.9(prettier@3.9.4)(typescript@6.0.3)
+      sharp:
+        specifier: latest
+        version: 0.35.3
       typescript:
         specifier: latest
         version: 6.0.3
@@ -3708,7 +3711,6 @@ snapshots:
       '@img/sharp-win32-arm64': 0.35.3
       '@img/sharp-win32-ia32': 0.35.3
       '@img/sharp-win32-x64': 0.35.3
-    optional: true
 
   shiki@4.3.1:
     dependencies:

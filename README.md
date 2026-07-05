@@ -30,14 +30,7 @@ This template includes a GitHub Actions pipeline in `.github/workflows/deploy.ym
 
 The default free deployment path is GitHub Pages. Push the project to GitHub, enable Pages with **Source: GitHub Actions**, and every push to `main` runs checks, builds the Astro site, and publishes it to the repository Pages URL. The workflow sets Astro `site` and `base` automatically, so assets work for both `username.github.io` repos and project pages like `/ai-web-factory/`.
 
-Cloudflare Pages is optional and uses the free `*.pages.dev` URL. To enable it, create a Cloudflare Pages project and add these GitHub repository settings:
-
-- Repository variable `DEPLOY_CLOUDFLARE_PAGES`: `true`
-- Repository variable `CLOUDFLARE_PAGES_PROJECT_NAME`: for example `ai-web-factory`
-- Repository secret `CLOUDFLARE_ACCOUNT_ID`: your Cloudflare account ID
-- Repository secret `CLOUDFLARE_API_TOKEN`: API token with Cloudflare Pages edit permissions
-
-The Cloudflare deploy job runs only on `main` when `DEPLOY_CLOUDFLARE_PAGES` is `true`.
+For Cloudflare Pages, use Cloudflare's Git integration instead of deploying from GitHub Actions. In Cloudflare, create a Pages project, connect the client GitHub repository, set production branch to `main`, use build command `pnpm build`, and set output directory `dist`. Cloudflare then deploys every push to `main` and creates preview deployments for other branches.
 
 ## Template Workflow
 

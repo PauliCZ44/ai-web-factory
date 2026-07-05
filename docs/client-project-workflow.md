@@ -113,23 +113,32 @@ The workflow sets Astro `base` automatically, so assets work under the repositor
 
 Use Cloudflare Pages when you want a cleaner free preview URL or when the client domain will later point to Cloudflare.
 
-Create a Cloudflare Pages project, then add these GitHub repository settings.
+Use Cloudflare's Git integration for client sites:
 
-Repository variables:
+1. In Cloudflare, go to **Workers & Pages**.
+2. Create a Pages project with **Connect to Git**.
+3. Select the client GitHub repository.
+4. Set production branch to `main`.
+5. Use build command:
 
-```text
-DEPLOY_CLOUDFLARE_PAGES=true
-CLOUDFLARE_PAGES_PROJECT_NAME=<cloudflare-pages-project-name>
+```bash
+pnpm build
 ```
 
-Repository secrets:
+6. Use output directory:
 
 ```text
-CLOUDFLARE_ACCOUNT_ID=<account-id>
-CLOUDFLARE_API_TOKEN=<pages-edit-token>
+dist
 ```
 
-The deployed free URL will be:
+7. Add environment variables if Cloudflare does not detect them automatically:
+
+```text
+NODE_VERSION=22
+PNPM_VERSION=11.9.0
+```
+
+Cloudflare deploys every push to `main`. The free URL will be:
 
 ```text
 https://<cloudflare-pages-project-name>.pages.dev
