@@ -39,9 +39,15 @@ Cloudflare Pages is optional and uses the free `*.pages.dev` URL. To enable it, 
 
 The Cloudflare deploy job runs only on `main` when `DEPLOY_CLOUDFLARE_PAGES` is `true`.
 
+## Template Workflow
+
+Make this repository a GitHub template repository, then create one repository per client from it. The client project should mostly change `src/content/site.ts`, images, theme, section order, and deployment settings.
+
+Full operator checklist: [docs/client-project-workflow.md](docs/client-project-workflow.md)
+
 ## Creating a Client Site
 
-1. Duplicate this template for the client.
+1. Create a new client repository from this GitHub template.
 2. Edit `src/content/site.ts`.
 3. Choose a daisyUI theme with `theme`.
 4. Set `sections` to control which blocks render and their order.
